@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the PsyshBundle package.
@@ -22,14 +22,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class PsyshCommand extends Command
 {
-    /**
-     * @var Shell
-     */
     private $shell;
 
-    /**
-     * @param Shell $shell
-     */
     public function __construct(Shell $shell)
     {
         parent::__construct();
@@ -37,17 +31,11 @@ final class PsyshCommand extends Command
         $this->shell = $shell;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Start PsySH for Symfony');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return (int) $this->shell->run();
